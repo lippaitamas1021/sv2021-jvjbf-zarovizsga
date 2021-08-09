@@ -1,5 +1,6 @@
 package finalexam;
 
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -9,11 +10,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class PlayerService {
 
-    private PlayerRepository playerRepository;
-    private ModelMapper modelMapper;
+    private final PlayerRepository playerRepository;
+    private final ModelMapper modelMapper;
 
     public List<PlayerDTO> listPlayers() {
         Type targetListType = new TypeToken<List<PlayerDTO>>() {}.getType();

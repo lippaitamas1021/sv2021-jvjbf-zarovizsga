@@ -3,10 +3,10 @@ package finalexam;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
@@ -17,12 +17,16 @@ import java.time.LocalDate;
 public class Player {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotBlank
     private String name;
 
+    @NotNull
     private LocalDate birthDate;
 
+    @Enumerated(EnumType.STRING)
     private PositionType position;
 
     @ManyToOne
@@ -32,5 +36,12 @@ public class Player {
         this.name = name;
         this.birthDate = birthDate;
         this.position = position;
+    }
+
+    public Player(String name, LocalDate birthDate, PositionType position, Team team) {
+        this.name = name;
+        this.birthDate = birthDate;
+        this.position = position;
+        this.team = team;
     }
 }
