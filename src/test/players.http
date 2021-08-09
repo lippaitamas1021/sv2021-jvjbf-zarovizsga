@@ -2,12 +2,13 @@ POST http://localhost:8080/api/players
 Content-Type: application/json
 
 {
-  "name": "John Doe",
-  "birthDate": "1992-11-12",
-  "position":"RIGHT_FULLBACK"
+  "name": "Gulácsi Péter",
+  "birthDate": "1990-10-10",
+  "position":"LEFT_FULLBACK"
 }
 
 ###
+
 GET http://localhost:8080/api/players
 Accept: application/json
 
