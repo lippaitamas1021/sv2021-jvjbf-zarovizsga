@@ -1,0 +1,13 @@
+POST http://localhost:8080/api/teams
+Content-Type: application/json
+
+{
+"name": "Manchester United"
+}
+
+###
+
+GET http://localhost:8080/api/teams
+Accept: application/json
+
+###
