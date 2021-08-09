@@ -11,14 +11,13 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-@NoArgsConstructor
 public class TeamService {
 
-    private TeamRepository teamRepository;
+    private final TeamRepository teamRepository;
 
-    private PlayerRepository playerRepository;
+    private final PlayerRepository playerRepository;
 
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
     public List<TeamDTO> listTeams() {
         Type targetListType = new TypeToken<List<TeamDTO>>(){}.getType();

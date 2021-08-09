@@ -11,7 +11,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class CreatePlayerCommand {
 
-    @NotBlank
     private String name;
 
     private LocalDate birthDate;

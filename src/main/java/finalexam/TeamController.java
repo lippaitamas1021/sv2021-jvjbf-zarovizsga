@@ -15,7 +15,7 @@ import java.util.List;
 @Tag(name = "Operations on teams")
 public class TeamController {
 
-    private TeamService teamService;
+    private final TeamService teamService;
 
     @GetMapping
     @Operation(summary = "Listing all teams", description = "This option is for listing all the teams")

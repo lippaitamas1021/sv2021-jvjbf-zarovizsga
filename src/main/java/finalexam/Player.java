@@ -3,7 +3,6 @@ package finalexam;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -36,12 +35,5 @@ public class Player {
         this.name = name;
         this.birthDate = birthDate;
         this.position = position;
-    }
-
-    public Player(String name, LocalDate birthDate, PositionType position, Team team) {
-        this.name = name;
-        this.birthDate = birthDate;
-        this.position = position;
-        this.team = team;
     }
 }
