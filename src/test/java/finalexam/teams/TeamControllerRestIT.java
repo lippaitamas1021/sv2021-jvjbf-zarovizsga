@@ -1,5 +1,11 @@
-package finalexam;
+package finalexam.teams;
 
+import finalexam.players.CreatePlayerCommand;
+import finalexam.players.PlayerDTO;
+import finalexam.players.PositionType;
+import finalexam.teams.CreateTeamCommand;
+import finalexam.teams.TeamDTO;
+import finalexam.teams.UpdateWithExistingPlayerCommand;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -57,7 +63,7 @@ public class TeamControllerRestIT {
                         new CreateTeamCommand("Arsenal"),
                         TeamDTO.class);
         TeamDTO resultWithPlayer = template.postForObject("/api/teams/{id}/players",
-                new CreatePlayerCommand("John Doe", LocalDate.of(1991,11,10),PositionType.CENTER_BACK),
+                new CreatePlayerCommand("John Doe", LocalDate.of(1991,11,10), PositionType.CENTER_BACK),
                 TeamDTO.class,
                 team.getId());
         assertThat(resultWithPlayer.getPlayers()).extracting(PlayerDTO::getName)

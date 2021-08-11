@@ -1,5 +1,6 @@
-package finalexam;
+package finalexam.teams;
 
+import finalexam.players.CreatePlayerCommand;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -34,7 +35,7 @@ public class TeamController {
 
     @PostMapping("/{id}/players")
     @Operation(summary = "Adding a new player", description = "This option is for adding a new player to the team")
-    public TeamDTO addPlayerToTheTeam(@PathVariable long id, @Valid @RequestBody CreatePlayerCommand command) {
+    public TeamDTO addPlayerToTheTeam(@PathVariable("id") long id, @Valid @RequestBody CreatePlayerCommand command) {
         return teamService.addPlayerToTheTeam(id, command);
     }
 
@@ -42,7 +43,7 @@ public class TeamController {
     @Operation(summary = "Buying a player", description = "This option is for buying a new player")
     @ApiResponse(responseCode = "200", description = "Player has been bought")
     @ApiResponse(responseCode = "400", description = "Buying this player is not possible")
-    public TeamDTO buyPlayer(@PathVariable long id, @Valid @RequestBody UpdateWithExistingPlayerCommand command){
+    public TeamDTO buyPlayer(@PathVariable("id") long id, @RequestBody UpdateWithExistingPlayerCommand command){
         return teamService.buyPlayer(id, command);
     }
 }

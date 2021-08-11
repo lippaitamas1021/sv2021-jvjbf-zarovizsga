@@ -1,7 +1,10 @@
-package finalexam;
+package finalexam.teams;
 
+import finalexam.EntityNotFoundException;
+import finalexam.players.CreatePlayerCommand;
+import finalexam.players.Player;
+import finalexam.players.PlayerRepository;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
@@ -31,23 +34,31 @@ public class TeamService {
 
     @Transactional
     public TeamDTO addPlayerToTheTeam(long id, CreatePlayerCommand command) {
-        Team team = findPlayerById(id);
-        Player player = playerRepository.save(new Player(command.getName(), command.getBirthDate(), command.getPosition()));
+        Team team = teamRepository.findById(id).orElseThrow(()-> new EntityNotFoundException(id, "Team"));
+        Player player = new Player(command.getName(), command.getBirthDate(), command.getPosition());
         team.addNewPlayer(player);
         return modelMapper.map(team, TeamDTO.class);
     }
 
     @Transactional
     public TeamDTO buyPlayer(long id, UpdateWithExistingPlayerCommand command) {
-        Player player = playerRepository.findById(command.getId()).orElseThrow(()-> new PlayerOrTeamNotFoundException("Player"));
-        Team team = findPlayerById(id);
-        if (player.getTeam() == null) {
+        Player player = findPlayerById(command.getId());
+        Team team = findTeamById(id);
+        if (player.hasNoTeam() && certifiable(team, player)) {
             team.addNewPlayer(player);
         }
         return modelMapper.map(team, TeamDTO.class);
     }
 
-    private Team findPlayerById(Long id) {
-        return teamRepository.findById(id).orElseThrow(() -> new PlayerOrTeamNotFoundException("Player"));
+    private Player findPlayerById(long id) {
+        return playerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(id, "Player"));
+    }
+
+    private Team findTeamById(long id) {
+        return teamRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(id, "Team"));
+    }
+
+    private boolean certifiable(Team team, Player player) {
+        return team.getPlayers().stream().filter(p -> p.getPosition() == player.getPosition()).count() < 2;
     }
 }

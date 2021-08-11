@@ -1,8 +1,28 @@
+PUT http://localhost:8080/api/teams/9/players
+Content-Type: application/json
+
+{
+"id": 12
+}
+
+###
+
+POST http://localhost:8080/api/teams/10/players
+Content-Type: application/json
+
+{
+"name": "Sallai Viktor",
+  "birthDate": "1998-08-08",
+  "position": "RIGHT_WINGER"
+}
+
+###
+
 POST http://localhost:8080/api/teams
 Content-Type: application/json
 
 {
-"name": "Manchester United"
+"name": "Hertha"
 }
 
 ###

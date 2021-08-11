@@ -1,7 +1,9 @@
-package finalexam;
+package finalexam.teams;
 
+import finalexam.players.Player;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -21,7 +23,8 @@ public class Team {
     private String name;
 
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
-    private List<Player> players;
+    @EqualsAndHashCode.Exclude
+    private List<Player> players = new ArrayList<>();
 
     public Team(String name) {
         this.name = name;
@@ -29,9 +32,6 @@ public class Team {
 
     public void addNewPlayer(Player player) {
         player.setTeam(this);
-        if (players == null) {
-            players = new ArrayList<>();
-        }
         players.add(player);
     }
 }

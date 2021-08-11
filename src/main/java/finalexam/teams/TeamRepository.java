@@ -1,4 +1,4 @@
-package finalexam;
+package finalexam.teams;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
