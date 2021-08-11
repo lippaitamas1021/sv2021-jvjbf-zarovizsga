@@ -1,4 +1,4 @@
-package finalexam;
+package finalexam.players;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

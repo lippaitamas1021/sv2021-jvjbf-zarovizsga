@@ -1,5 +1,8 @@
-package finalexam;
+package finalexam.players;
 
+import finalexam.players.CreatePlayerCommand;
+import finalexam.players.PlayerDTO;
+import finalexam.players.PositionType;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,7 +28,7 @@ public class PlayerControllerRestIT {
     void testAddNewPlayers(){
         PlayerDTO result =
                 template.postForObject("/api/players",
-                        new CreatePlayerCommand("John Doe", LocalDate.of(1991,11,10),PositionType.CENTER_BACK),
+                        new CreatePlayerCommand("John Doe", LocalDate.of(1991,11,10), PositionType.CENTER_BACK),
                                 PlayerDTO.class);
         assertEquals("John Doe",result.getName());
         assertEquals(1991,result.getBirthDate().getYear());

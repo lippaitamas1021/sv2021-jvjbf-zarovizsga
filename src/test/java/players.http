@@ -1,0 +1,20 @@
+DELETE http://localhost:8080/api/players/11
+Content-Type: application/json
+
+###
+
+POST http://localhost:8080/api/players
+Content-Type: application/json
+
+{
+"name": "Király Gábor",
+"birthDate": "1982-06-30",
+"position": "GOALKEEPER"
+}
+
+###
+
+GET http://localhost:8080/api/players
+Accept: application/json
+
+###

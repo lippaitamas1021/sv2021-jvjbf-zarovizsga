@@ -1,11 +1,10 @@
-package finalexam;
+package finalexam.players;
 
+import finalexam.teams.Team;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
@@ -19,10 +18,9 @@ public class Player {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotBlank
     private String name;
 
-    @NotNull
+    @Column(name = "birth_date")
     private LocalDate birthDate;
 
     @Enumerated(EnumType.STRING)
@@ -35,5 +33,9 @@ public class Player {
         this.name = name;
         this.birthDate = birthDate;
         this.position = position;
+    }
+
+    public boolean hasNoTeam() {
+        return team == null;
     }
 }
